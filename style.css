@@ -1,0 +1,28 @@
+.wrapper{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+#image{
+    width: 400px;
+    height: 600px;
+    object-fit: cover;
+}
+
+#btnPrev{
+    align-self: center;
+    width: 100px;
+    height: 100px;
+    border: 1px solid gray;
+    background-color: transparent;
+    visibility: hidden;
+}
+
+#btnNext{
+    align-self: center;
+    width: 100px;
+    height: 100px;
+    border: 1px solid gray;
+    background-color: transparent;
+}
