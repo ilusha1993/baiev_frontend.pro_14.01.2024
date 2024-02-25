@@ -1,3 +1,4 @@
+'use strict';
 const emojiWrapper = document.getElementById('wrapper');
 const emojiList = document.getElementById('emojiList');
 const countList = document.getElementById('countList');
