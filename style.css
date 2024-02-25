@@ -1,0 +1,54 @@
+#wrapper{
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border: 1px solid darkgoldenrod;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+h1{
+    text-align: center;
+    color: darkgoldenrod;
+}
+
+.goods{
+    border: 1px solid darkgoldenrod;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+}
+
+.emojiList, .countList{
+    display: flex;
+    justify-content: space-around;
+    font-size: 30px;
+}
+
+.emoji {
+    cursor: pointer;
+    padding: 10px;
+}
+
+.count{
+    color: darkolivegreen;
+}
+
+.emoji:hover{
+    outline: 1px solid darkgoldenrod;
+    border-radius: 50px;
+}
+
+#clearButton{
+    font-size: 30px;
+    border-radius: 50px;
+    border: 1px solid darkgoldenrod;
+    color: darkolivegreen;
+    background-color: antiquewhite;
+    width: 300px;
+    display: inline-block;
+}
