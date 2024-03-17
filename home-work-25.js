@@ -1,17 +1,18 @@
 const categoriesContainer = document.getElementById('categories');
 const productsContainer = document.getElementById('products');
 const productInfoContainer = document.getElementById('product-info');
+const purchaseInfo = document.getElementById('purchaseInfo');
 
-const categories = ['Electronics', 'Clothing', 'Books'];
+const categories = ['Електроніка', 'Одяг', 'Книжки'];
 
 const products = {
-    Electronics: [
-        {name: 'Laptop', price: 500},
-        {name: 'Smartphone', price: 1000}],
-    Clothing: [
-        {name: 'T-shirt', price: 100},
-        {name: 'Jeans', price: 200}],
-    Books: [
+    'Електроніка': [
+        {name: 'Ноутбук', price: 500},
+        {name: 'Смартфон', price: 1000}],
+    'Одяг': [
+        {name: 'Футболка', price: 100},
+        {name: 'Джинси', price: 200}],
+    'Книжки': [
         {name:  'JavaScript for Beginners', price: 50},
         {name: 'CSS Mastery', price: 40}]
 };
@@ -40,13 +41,14 @@ function displayProducts(category) {
 function displayProductInfo(product) {
     productInfoContainer.innerHTML = `
     <h2>${product.name}</h2>
-    <p>Price: $${product.price}</p>
-    <button class="buy-btn" onclick="buyProduct()">Buy</button>
+    <p>Ціна: $${product.price}</p>
+    <button class="buy-btn" onclick="buyProduct()">Купити</button>
   `;
 }
 
 function buyProduct() {
-    alert('Product purchased!');
+    // alert('Product purchased!');
+    purchaseInfo.style.display = 'flex';
     productInfoContainer.innerHTML = '';
     productsContainer.innerHTML = '';
 }

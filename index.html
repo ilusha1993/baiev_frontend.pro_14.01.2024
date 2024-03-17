@@ -6,11 +6,48 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="wrapper">
-        <div class="categories" id="categories"></div>
-        <div class="products" id="products"></div>
-        <div class="product-info" id="product-info"></div>
-    </div>
+   <div class="wrapper">
+       <h1>Оберіть товари</h1>
+       <div class="container">
+           <div class="categories" id="categories"></div>
+           <div class="products" id="products"></div>
+           <div class="product-info" id="product-info"></div>
+       </div>
+       <div id="purchaseInfo">
+           <h2>Форма оформлення замовлення</h2>
+           <form id="orderForm">
+               <label for="fullName">ПІБ покупця:</label>
+               <input type="text" id="fullName" name="fullName" required><br><br>
+
+               <label for="city">Місто:</label>
+               <select id="city" name="city" required>
+                   <option value="">Оберіть місто</option>
+                   <option value="Київ">Київ</option>
+                   <option value="Харків">Харків</option>
+                   <option value="Дніпро">Дніпро</option>
+               </select><br><br>
+
+               <label>Склад Нової пошти:</label>
+               <input type="text" id="novaPoshtaBranch" name="novaPoshtaBranch" required><br><br>
+
+               <label>Післяплати або оплата банківською карткою:</label><br>
+               <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cashOnDelivery" required>
+
+               <label>Післяплата</label><br>
+               <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" required>
+
+               <label for="creditCard">Оплата банківською карткою</label><br><br>
+
+               <label>Кількість продукції:</label>
+               <input type="number" id="quantity" name="quantity" min="1" required><br><br>
+
+               <label>Коментар до замовлення:</label><br>
+               <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br><br>
+
+               <input class="buy-btn" type="submit" value="Оформити замовлення">
+           </form>
+       </div>
+   </div>
 <script src="home-work-25.js"></script>
 </body>
 </html>
