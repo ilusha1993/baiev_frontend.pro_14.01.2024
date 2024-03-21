@@ -15,7 +15,8 @@
         </div>
         <div id="closeWrapper"></div>
         <div id="purchaseInfo">
-            <h2>Форма оформлення замовлення</h2>
+            <h3>Форма оформлення замовлення</h3>
+            <button id="closeForm">Х</button>
             <form id="orderForm">
                 <label for="fullName">ПІБ покупця:</label>
                 <input type="text" id="fullName" name="fullName" required><br><br>
@@ -45,7 +46,7 @@
                 <label>Коментар до замовлення:</label><br>
                 <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br><br>
 
-                <input class="buy-btn" type="submit" value="Оформити замовлення">
+                <input id="finalBuy" type="submit" value="Оформити замовлення">
             </form>
         </div>
     </div>

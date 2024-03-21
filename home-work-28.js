@@ -4,6 +4,7 @@ const productInfoContainer = document.getElementById('product-info');
 const purchaseInfo = document.getElementById('purchaseInfo');
 const closeWrapper = document.getElementById('closeWrapper');
 
+
 const products = {
     'Електроніка': [
         {name: 'Ноутбук', price: 500},
@@ -58,3 +59,62 @@ function buyProduct() {
 }
 
 showCategories();
+
+function openOrderForm() {
+    purchaseInfo.innerHTML = '';
+}
+
+function closeOrderForm() {
+    purchaseInfo.style.display = 'none';
+    closeWrapper.classList.remove('closeWrapperActive')
+
+}
+
+const closeForm = document.getElementById('closeForm');
+closeForm.addEventListener('click', () => {
+    closeOrderForm()
+})
+
+function closeAll (){
+    closeOrderForm();
+    // openOrderForm();
+    submitOrderForm();
+}
+
+function submitOrderForm() {
+    const fullName = document.getElementById('fullName').value.trim();
+    const city = document.getElementById('city').value;
+    const novaPoshtaBranch = document.getElementById('novaPoshtaBranch').value.trim();
+    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+    const quantity = document.getElementById('quantity').value.trim();
+    const comment = document.getElementById('comment').value.trim();
+
+
+    if (fullName === '' || city === '' || novaPoshtaBranch === '' || !paymentMethod || quantity === '') {
+        alert('Будь ласка, заповніть всі обов\'язкові поля форми.');
+        return false;
+    }
+
+    const orderInfo = `
+        <p><strong>ПІБ покупця:</strong> ${fullName}</p>
+        <p><strong>Місто:</strong> ${city}</p>
+        <p><strong>Склад Нової пошти:</strong> ${novaPoshtaBranch}</p>
+        <p><strong>Метод оплати:</strong> ${paymentMethod.value === 'cashOnDelivery' ? 'Післяплата' : 'Оплата банківською карткою'}</p>
+        <p><strong>Кількість продукції:</strong> ${quantity}</p>
+        <p><strong>Коментар:</strong> ${comment}</p>
+        <button id="closeForm" onclick="closeAll ()">Х</button>
+    `;
+
+
+    purchaseInfo.innerHTML = `
+        <h3>Інформація про замовлення:</h3>
+        ${orderInfo}
+    `;
+
+    return true;
+}
+
+const finalBuy = document.getElementById('finalBuy');
+finalBuy.addEventListener('click', () => {
+    submitOrderForm();
+})
