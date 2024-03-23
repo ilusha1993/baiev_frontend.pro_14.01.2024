@@ -3,6 +3,7 @@ const productsContainer = document.getElementById('products');
 const productInfoContainer = document.getElementById('product-info');
 const purchaseInfo = document.getElementById('purchaseInfo');
 const closeWrapper = document.getElementById('closeWrapper');
+const invoice = document.getElementById('invoice');
 let categorySelected;
 
 
@@ -58,6 +59,7 @@ function displayProductInfo(product) {
         <p class="priceValue">Ціна: $${product.price}</p>
         <button id="buyButton">Купити</button>
     </div>`;
+
     productInfoContainer.style.backgroundColor = '#f1ebeb';
     const buyButton = document.getElementById('buyButton');
     buyButton.addEventListener('click', () => {
@@ -74,19 +76,24 @@ function buyProduct() {
 
 showCategories();
 
-const closeForm = document.getElementById('closeForm');
-closeForm.addEventListener('click', () => {
+function closeFormFunction() {
     purchaseInfo.style.display = 'none';
-    closeWrapper.style.display = 'none';
+    productsContainer.style.backgroundColor = 'transparent';
+    productInfoContainer.style.backgroundColor = 'transparent';
     productInfoContainer.innerHTML = '';
     productsContainer.innerHTML = '';
     categorySelected.style.color = '#8a96a1';
-})
+}
 
-function closeInvoice(){
+const closeForm = document.getElementById('closeForm');
+closeForm.addEventListener('click', () => {
     closeWrapper.style.display = 'none';
-    purchaseInfo.style.display = 'none';
-    categorySelected.style.color = '#8a96a1';
+    closeFormFunction()
+});
+
+function invoiceCloseFuntion() {
+    invoice.style.display = 'none';
+    closeWrapper.style.display = 'none';
 }
 
 function submitOrderForm() {
@@ -110,18 +117,25 @@ function submitOrderForm() {
         <p><strong>Метод оплати:</strong> ${paymentMethod.value === 'cashOnDelivery' ? 'Післяплата' : 'Оплата банківською карткою'}</p>
         <p><strong>Кількість продукції:</strong> ${quantity}</p>
         <p><strong>Коментар:</strong> ${comment}</p>
-        <button id="closeInvoice" onclick="closeInvoice()">Х</button>
+        <button id="closeInvoice" onclick="invoiceCloseFuntion()">Х</button>
     `
 
-    purchaseInfo.innerHTML = `
+    invoice.innerHTML = `
         <h3>Ваше замовлення:</h3>
         ${orderInfo}
     `
+    invoice.style.display = 'flex';
+
+    closeFormFunction();
 
     return true;
 }
 
 const finalBuy = document.getElementById('finalBuy');
-finalBuy.addEventListener('click', () => {
-    submitOrderForm();
-})
+finalBuy.addEventListener('click', (event) => {
+    event.preventDefault(); // Зупиняємо дії за замовчуванням (у цьому випадку, відправку форми)
+    if (submitOrderForm()) {
+        // Якщо submitOrderForm повертає true, то очищаємо форму
+        document.getElementById('orderForm').reset();
+    }
+});
