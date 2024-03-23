@@ -5,6 +5,8 @@ const purchaseInfo = document.getElementById('purchaseInfo');
 const closeWrapper = document.getElementById('closeWrapper');
 const invoice = document.getElementById('invoice');
 let categorySelected;
+let productName;
+let productPrice;
 
 
 
@@ -60,6 +62,8 @@ function displayProductInfo(product) {
         <button id="buyButton">Купити</button>
     </div>`;
 
+    productName = product.name;
+    productPrice = product.price;
     productInfoContainer.style.backgroundColor = '#f1ebeb';
     const buyButton = document.getElementById('buyButton');
     buyButton.addEventListener('click', () => {
@@ -111,6 +115,8 @@ function submitOrderForm() {
     }
 
     const orderInfo = `
+        
+        <div class="productPurchased">${productName} - $ ${productPrice}</div>
         <p><strong>ПІБ покупця:</strong> ${fullName}</p>
         <p><strong>Місто:</strong> ${city}</p>
         <p><strong>Склад Нової пошти:</strong> ${novaPoshtaBranch}</p>
