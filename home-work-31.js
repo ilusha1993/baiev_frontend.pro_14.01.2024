@@ -1,6 +1,13 @@
 const categoriesContainer = document.getElementById('categories');
 const productsContainer = document.getElementById('products');
 const productInfoContainer = document.getElementById('product-info');
+const container = document.getElementById('container');
+
+const title = document.getElementById('title');
+
+//Мої замовлення
+const myOrdersBloc = document.getElementById('myOrdersBloc');
+const myOrdersIcon = document.getElementById('myOrdersIcon');
 
 //Блок заповнення форми (при натисканні "КУПИТИ")
 const purchaseInfo = document.getElementById('purchaseInfo');
@@ -186,3 +193,29 @@ finalBuy.addEventListener('click', (event) => {
         document.getElementById('orderForm').reset();
     }
 });
+
+//Кнопка переходу в "Мої замовлення" та зміна стилю
+let myOrdersStatus = 'off';
+myOrdersIcon.addEventListener('click', () => {
+    if(myOrdersStatus === 'off') {
+        container.style.display = 'none';
+        myOrdersBloc.style.display = 'flex';
+        myOrdersBloc.style.border = '1px solid lightslategray';
+        myOrdersStatus = 'on';
+        myOrdersIcon.innerHTML = `<i class="fa-solid fa-rotate-left myOrdersIcon"></i>`
+        myOrdersIcon.style.color = 'lightslategray';
+        title.innerHTML = `Мої замовлення`;
+        title.style.color = 'lightslategray';
+        title.style.border = '1px solid lightslategray'
+    } else {
+        container.style.display = 'flex';
+        myOrdersBloc.style.display = 'none';
+        myOrdersBloc.style.border = '1px solid goldenrod';
+        myOrdersStatus = 'off';
+        myOrdersIcon.innerHTML = `<i class="fa-solid fa-cart-shopping myOrdersIcon"></i>`
+        myOrdersIcon.style.color = 'goldenrod';
+        title.innerHTML = `Оберіть товари`;
+        title.style.color = 'goldenrod';
+        title.style.border = '1px solid goldenrod'
+    }
+})

@@ -15,9 +15,10 @@
     align-items: center;
     gap: 30px;
     background-color: whitesmoke;
+    position: relative;
 }
 
-h1{
+#title{
     color: goldenrod;
     border: 1px solid goldenrod ;
     padding: 20px;
@@ -222,6 +223,7 @@ h3{
 #invoice{
     display: none;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
     position: absolute;
     z-index: 3;
@@ -238,4 +240,28 @@ h3{
     border: 2px solid goldenrod;
     font-size: 20px;
     font-weight: bold;
+}
+
+.myOrdersIcon{
+    font-size: 50px;
+}
+
+#myOrdersIcon{
+    position: absolute;
+    color: goldenrod;
+    top: 35px;
+    right: 50px;
+    border: transparent;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#myOrdersBloc{
+    width: 100%;
+    padding: 30px;
+    border: 1px solid goldenrod;
+    border-radius: 50px;
+    display: none;
+    min-height: 600px;
+    flex-wrap: wrap;
 }
