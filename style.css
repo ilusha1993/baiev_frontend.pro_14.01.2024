@@ -1,0 +1,241 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper{
+    font-family: Arial, sans-serif;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1024px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    background-color: whitesmoke;
+}
+
+h1{
+    color: goldenrod;
+    border: 1px solid goldenrod ;
+    padding: 20px;
+    border-radius: 50px;
+}
+
+.container{
+    width: 100%;
+    padding: 30px;
+    border: 1px solid goldenrod;
+    border-radius: 50px;
+    display: flex;
+    min-height: 600px;
+}
+
+#categoriesTitle, #productsTitle, #priceTitle{
+    color: goldenrod;
+    padding-bottom: 20px;
+    border-bottom: 3px solid goldenrod;
+    width: 100%;
+    text-align: center;
+}
+
+.categories{
+    width: 33%;
+    padding: 20px;
+    background-color: #c3d9e2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    border-radius: 50px 0 0 50px;
+}
+
+.category{
+    color: #8a96a1;
+    font-size: 18px;
+
+    &:hover{
+        cursor: pointer;
+        color: goldenrod;
+    }
+}
+
+.products{
+    width: 33%;
+    padding: 20px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.product{
+    color: #8a96a1;
+    font-size: 18px;
+
+    &:hover{
+        cursor: pointer;
+        color: goldenrod;
+    }
+}
+
+.product-info{
+    width: 34%;
+    background-color: transparent;
+    border-radius: 0 50px 50px 0;
+    padding: 20px;
+}
+
+.productImage{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+.buyContainer{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    height: 100%;
+}
+
+.priceValue{
+    font-size: 20px;
+    padding: 10px;
+    color: green;
+}
+
+#buyButton{
+    font-size: 20px;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 50px;
+    border: 1px solid green;
+    background-color: green;
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+#purchaseInfo{
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background-color: whitesmoke;
+    border-radius: 50px;
+}
+
+h3{
+    color: goldenrod;
+}
+
+#orderForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#fullName, #city, #novaPoshtaBranch, #quantity {
+    height: 30px;
+    border-radius: 50px;
+    padding: 0 20px;
+}
+
+#comment{
+    height: 50px;
+}
+
+#cashOnDelivery{
+    align-self: flex-start;
+    &::before{
+        content: 'Післяплата';
+        margin-left: 30px;
+        font-size: 16px;
+    }
+}
+
+#creditCard{
+    align-self: flex-start;
+    white-space: nowrap;
+    &::before{
+        content: 'Оплата банківською карткою';
+        margin-left: 30px;
+        font-size: 16px;
+    }
+}
+
+#closeWrapper{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #8d8585;
+    opacity: 0.6;
+    display: none;
+    z-index: 1;
+}
+
+#finalBuy{
+    font-size: 18px;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 50px;
+    border: 1px solid green;
+    background-color: green;
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+#closeForm, #closeInvoice{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    border: 1px solid black;
+
+    &:hover{
+        background-color: goldenrod;
+        cursor: pointer;
+        color: white;
+    }
+}
+
+#invoice{
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.productPurchased{
+    padding: 20px;
+    border: 2px solid goldenrod;
+    font-size: 20px;
+    font-weight: bold;
+}

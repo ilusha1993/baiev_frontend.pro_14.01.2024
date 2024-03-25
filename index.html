@@ -3,8 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Baiev Illia - Front End Pro - Home work</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div class="wrapper">
+    <h1>Оберіть товари</h1>
+    <div class="container">
+        <div class="categories" id="categories">
+            <h2 id="categoriesTitle">Категорії</h2>
+        </div>
+        <div class="products" id="products">
+        </div>
+        <div class="product-info" id="product-info"></div>
+    </div>
+    <div id="closeWrapper"></div>
+    <div id="purchaseInfo">
+        <h3>Форма оформлення замовлення</h3>
+        <button id="closeForm">Х</button>
+        <form id="orderForm">
+            <label class="label" for="fullName">ПІБ покупця:</label>
+            <input type="text" id="fullName" name="fullName" required>
+            <br>
+            <label class="label" for="city">Місто:</label>
+            <select id="city" name="city" required>
+                <option value="">Оберіть місто</option>
+                <option value="Київ">Київ</option>
+                <option value="Харків">Харків</option>
+                <option value="Дніпро">Дніпро</option>
+            </select>
+            <br>
+            <label>Склад Нової пошти:</label>
+            <input type="text" id="novaPoshtaBranch" name="novaPoshtaBranch" required>
+            <br>
+            <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cashOnDelivery" required>
+            <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" required>
+            <br>
+            <label>Кількість продукції:</label>
+            <input type="number" id="quantity" name="quantity" min="1" required>
+            <br>
+            <label>Коментар до замовлення:</label>
+            <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
+            <br>
+            <input id="finalBuy" type="submit" value="Оформити замовлення">
+        </form>
+    </div>
+    <div id="invoice"></div>
+</div>
+<script src="home-work-28.js"></script>
 </body>
 </html>
