@@ -154,16 +154,26 @@ function loadOrdersFromLocalStorage() {
     if (orders && orders.length > 0) {
         orders.forEach(order => {
             const completedOrder = `
-                <div class="productPurchased">${order.productName} - $ ${order.productPrice}</div>
-                <img class="productImage" src="./img/${order.productImg}" alt="Product photo">
-                <p><strong>ПІБ покупця:</strong> ${order.fullName}</p>
-                <p><strong>Місто:</strong> ${order.city}</p>
-                <p><strong>Склад Нової пошти:</strong> ${order.novaPoshtaBranch}</p>
-                <p><strong>Метод оплати:</strong> ${order.paymentMethod}</p>
-                <p><strong>Кількість продукції:</strong> ${order.quantity}</p>
-                <p><strong>Коментар:</strong> ${order.comment}</p>
+                <div class="completedOrder">
+                    <button id="removeOrder">X</button>
+                    <img class="orderImage" src="./img/${order.productImg}" alt="Product photo">
+                    <p class="orderDate">${order.orderDateTime}</p>
+                    <p class="orderName"><strong>${order.productName}</strong></p>
+                    <p class="orderPrice"><strong>${order.productPrice} $</strong></p>
+               </div>`
 
-            `;
+            // const completedOrder = `
+            //     <div class="productPurchased">${orders.productName} - $ ${order.productPrice}</div>
+            //     <img class="productImage" src="./img/${order.productImg}" alt="Product photo">
+            //     <p><strong>ПІБ покупця:</strong> ${order.fullName}</p>
+            //     <p><strong>Місто:</strong> ${order.city}</p>
+            //     <p><strong>Склад Нової пошти:</strong> ${order.novaPoshtaBranch}</p>
+            //     <p><strong>Метод оплати:</strong> ${order.paymentMethod}</p>
+            //     <p><strong>Кількість продукції:</strong> ${order.quantity}</p>
+            //     <p><strong>Коментар:</strong> ${order.comment}</p>
+            //
+            // `;
+
 
             const orderElement = document.createElement('div');
             orderElement.classList.add('order');
