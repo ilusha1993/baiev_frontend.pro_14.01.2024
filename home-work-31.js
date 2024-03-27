@@ -144,6 +144,37 @@ function invoiceCloseFuntion() {
     closeWrapper.style.display = 'none';
 }
 
+// Викликаємо функцію завантаження замовлень при завантаженні сторінки
+function loadOrdersFromLocalStorage() {
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    console.log(orders);
+    myOrdersBloc.innerHTML = '';
+
+    // Перевіряємо, чи є замовлення у localStorage і відображаємо їх у "Мої замовлення"
+    if (orders && orders.length > 0) {
+        orders.forEach(order => {
+            const completedOrder = `
+                <div class="productPurchased">${order.productName} - $ ${order.productPrice}</div>
+                <img class="productImage" src="./img/${order.productImg}" alt="Product photo">
+                <p><strong>ПІБ покупця:</strong> ${order.fullName}</p>
+                <p><strong>Місто:</strong> ${order.city}</p>
+                <p><strong>Склад Нової пошти:</strong> ${order.novaPoshtaBranch}</p>
+                <p><strong>Метод оплати:</strong> ${order.paymentMethod}</p>
+                <p><strong>Кількість продукції:</strong> ${order.quantity}</p>
+                <p><strong>Коментар:</strong> ${order.comment}</p>
+
+            `;
+
+            const orderElement = document.createElement('div');
+            orderElement.classList.add('order');
+            orderElement.innerHTML = completedOrder;
+            myOrdersBloc.appendChild(orderElement);
+        });
+    }
+}
+
+loadOrdersFromLocalStorage();
+
 //Функція відправки заповненої форми
 function submitOrderForm() {
     const fullName = document.getElementById('fullName').value.trim();
@@ -153,16 +184,36 @@ function submitOrderForm() {
     const quantity = document.getElementById('quantity').value.trim();
     const comment = document.getElementById('comment').value.trim();
 
+    // Отримання поточної дати та часу
+    const currentDateTime = new Date();
+    const orderDateTime = currentDateTime.toLocaleString('en-US');
+
     //Перевірка заповнення полів
     if (fullName === '' || city === '' || novaPoshtaBranch === '' || !paymentMethod || quantity === '') {
         alert('Будь ласка, заповніть всі обов\'язкові поля форми.');
         return false;
     }
 
+    // Формуємо об'єкт замовлення
+    const order = {
+        productName: productName,
+        productImg: productImg,
+        orderDateTime: orderDateTime,
+        productPrice: productPrice,
+        fullName: fullName,
+        city: city,
+        novaPoshtaBranch: novaPoshtaBranch,
+        paymentMethod: paymentMethod.value === 'cashOnDelivery' ? 'Післяплата' : 'Оплата банківською карткою',
+        quantity: quantity,
+        comment: comment
+    };
+
+
     //Формуємо повідомлення про замовлення
     const orderInfo = `
         <div class="productPurchased">${productName} - $ ${productPrice}</div>
         <img class="productImage" src="./img/${productImg}" alt="Product photo">
+        <p><strong>Дата та час замовлення:</strong> ${orderDateTime}</p>
         <p><strong>ПІБ покупця:</strong> ${fullName}</p>
         <p><strong>Місто:</strong> ${city}</p>
         <p><strong>Склад Нової пошти:</strong> ${novaPoshtaBranch}</p>
@@ -172,14 +223,24 @@ function submitOrderForm() {
         <button id="closeInvoice" onclick="invoiceCloseFuntion()">Х</button>
     `
 
+    // Отримуємо збережені замовлення з localStorage або створюємо новий масив
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders.push(order); // Додаємо нове замовлення до масиву
+
+    // Зберігаємо оновлений масив у localStorage
+    localStorage.setItem('orders', JSON.stringify(orders));
+
     closeFormFunction(); //закриття форми заповнення замовлення
 
     //Відображаємо повідомлення про замовлення
     invoice.innerHTML = `
-        <h3>Ваше замовлення:</h3>
+        <h3>Ваше замовлення сформоване!</h3>
+        <h4>Ви можете знайти його в "Мої замовлення"</h4>
         ${orderInfo}
     `
     invoice.style.display = 'flex'; //відображаємо, бо за замовченням "display: none;"
+
+    loadOrdersFromLocalStorage();
 
     return true;
 }
@@ -202,7 +263,7 @@ myOrdersIcon.addEventListener('click', () => {
         myOrdersBloc.style.display = 'flex';
         myOrdersBloc.style.border = '1px solid lightslategray';
         myOrdersStatus = 'on';
-        myOrdersIcon.innerHTML = `<i class="fa-solid fa-rotate-left myOrdersIcon"></i>`
+        myOrdersIcon.innerHTML = `<i class="fa-solid fa-rotate-left myOrdersIcon"></i><p>На головну сторінку</p>`
         myOrdersIcon.style.color = 'lightslategray';
         title.innerHTML = `Мої замовлення`;
         title.style.color = 'lightslategray';
@@ -212,10 +273,11 @@ myOrdersIcon.addEventListener('click', () => {
         myOrdersBloc.style.display = 'none';
         myOrdersBloc.style.border = '1px solid goldenrod';
         myOrdersStatus = 'off';
-        myOrdersIcon.innerHTML = `<i class="fa-solid fa-cart-shopping myOrdersIcon"></i>`
+        myOrdersIcon.innerHTML = `<i class="fa-solid fa-cart-shopping myOrdersIcon"></i><p>Мої замовлення</p>`
         myOrdersIcon.style.color = 'goldenrod';
         title.innerHTML = `Оберіть товари`;
         title.style.color = 'goldenrod';
         title.style.border = '1px solid goldenrod'
     }
 })
+
